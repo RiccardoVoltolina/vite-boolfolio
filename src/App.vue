@@ -9,12 +9,28 @@ export default {
   data() {
     return {
 
-      message: 'hello world'
+      projects_api: 'http://localhost:8000/api/projects',
+
+      projects: [],
+
 
     }
   },
   mounted() {
+    axios
 
+    .get(this.projects_api)
+
+    .then(response=> {
+
+      console.log(response);
+
+      this.projects = response.data.result
+    })
+
+    .catch(err => {
+      console.error(err);
+    })
   }
 }
 </script>
@@ -22,7 +38,7 @@ export default {
 <template>
   <div id="app">
 
-    <div>{{ message }}</div>
+    <div v-for="project in projects.data">{{ project.title }}</div>
 
   </div>
 </template>
