@@ -9,7 +9,11 @@ export default {
   data() {
     return {
 
-      projects_api: 'http://localhost:8000/api/projects',
+      base_url: 'http://localhost:8000',
+
+      projects_url: '/api/projects',
+
+
 
       projects: [],
 
@@ -19,7 +23,7 @@ export default {
   mounted() {
     axios
 
-    .get(this.projects_api)
+    .get(this.base_url + this.projects_url)
 
     .then(response=> {
 
@@ -38,7 +42,16 @@ export default {
 <template>
   <div id="app">
 
-    <div v-for="project in projects.data">{{ project.title }}</div>
+    <div class="container">
+      <div class="card" v-for="project in projects.data">
+        <img :src="base_url + '/storage/' + project.thumb  " class="card-img-top" alt="...">
+        
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <small>{{ project.authors }}</small>
+      </div>
+    </div>
+
 
   </div>
 </template>
