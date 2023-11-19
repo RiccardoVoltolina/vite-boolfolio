@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+import Projects from './components/Projects.vue';
+
 
 
 export default {
@@ -16,6 +18,7 @@ export default {
 
 
       projects: [],
+
 
 
     }
@@ -54,6 +57,8 @@ export default {
               <h2>{{ project.title }}</h2>
               <p>{{ project.description }}</p>
               <small>{{ project.authors }}</small>
+              
+              <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
             </div>
           </div>
         </div>
