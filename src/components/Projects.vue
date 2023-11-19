@@ -23,8 +23,8 @@ export default {
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
       <small>{{ authors }}</small>
-      <a :href="projectlink">Link al progetto</a>
-      <a :href="githublink">Link github</a>
+      <a class=" text-decoration-none text-black" :href="projectlink">Link al progetto</a>
+      <a class=" text-decoration-none text-black" :href="githublink">Link github</a>
 
 
       <div v-if="technologies" v-for="technology in technologies">{{ technology.name_tech }}</div>

@@ -51,7 +51,7 @@ export default {
       <h1>Progetti:</h1>
       <div class="row row-cols-lg-3">
         <div class="col" v-for="project in projects.data">
-          <Projects :thumb="project.thumb" :projectlink="project.projectlink" :title="project.title" :type="project.type"
+          <Projects :thumb="project.thumb" :projectlink="project.projectlink" :githublink="project.githublink" :title="project.title" :type="project.type"
                     :description="project.description" 
                     :technologies="project.technologies"/>
 
