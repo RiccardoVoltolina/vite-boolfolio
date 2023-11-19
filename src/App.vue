@@ -23,18 +23,18 @@ export default {
   mounted() {
     axios
 
-    .get(this.base_url + this.projects_url)
+      .get(this.base_url + this.projects_url)
 
-    .then(response=> {
+      .then(response => {
 
-      console.log(response);
+        console.log(response);
 
-      this.projects = response.data.result
-    })
+        this.projects = response.data.result
+      })
 
-    .catch(err => {
-      console.error(err);
-    })
+      .catch(err => {
+        console.error(err);
+      })
   }
 }
 </script>
@@ -42,13 +42,22 @@ export default {
 <template>
   <div id="app">
 
+    
     <div class="container">
-      <div class="card" v-for="project in projects.data">
-        <img :src="base_url + '/storage/' + project.thumb  " class="card-img-top" alt="...">
-        
-        <h2>{{ project.title }}</h2>
-        <p>{{ project.description }}</p>
-        <small>{{ project.authors }}</small>
+      <h1>Progetti:</h1>
+      <div class="row row-cols-lg-3">
+        <div class="col" v-for="project in projects.data">
+          <div class="my-3 h-100">
+
+            <div class="card">
+              <img :src="base_url + '/storage/' + project.thumb" class="card-img-top" alt="...">
+              <h2>{{ project.title }}</h2>
+              <p>{{ project.description }}</p>
+              <small>{{ project.authors }}</small>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
