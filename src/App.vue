@@ -7,6 +7,8 @@ import Projects from './components/Projects.vue';
 
 
 export default {
+
+  
   name: 'App',
   data() {
     return {
@@ -15,13 +17,12 @@ export default {
 
       projects_url: '/api/projects',
 
-
-
       projects: [],
-
-
-
     }
+  },
+
+  components: {
+    Projects,
   },
   mounted() {
     axios
@@ -50,7 +51,12 @@ export default {
       <h1>Progetti:</h1>
       <div class="row row-cols-lg-3">
         <div class="col" v-for="project in projects.data">
-          <div class="my-3 h-100">
+          <Projects :thumb="project.thumb" :projectlink="project.projectlink" :title="project.title" :type="project.type"
+                    :description="project.description" 
+                    :technologies="project.technologies"/>
+
+
+          <!-- <div class="my-3 h-100">
 
             <div class="card">
               <img :src="base_url + '/storage/' + project.thumb" class="card-img-top" alt="...">
@@ -60,7 +66,7 @@ export default {
               
               <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
