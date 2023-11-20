@@ -7,6 +7,8 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 
 import HomeView from "./views/HomeView.vue";
 
+import SingleProjectView from "./views/SingleProjectView.vue"
+
 
 // creiamo la rotta per la pagina home
 
@@ -15,6 +17,14 @@ const routes = [
     // ricordarsi di far iniziare il path con /
 
     { path: '/', component: HomeView },
+
+    {
+        path: '/project/:id',
+
+        name: 'project',
+
+        component: SingleProjectView,
+    }
 ]
 
 
@@ -24,6 +34,6 @@ const router = createRouter({
     routes
 });
 
-export {router}
+export { router }
 
 

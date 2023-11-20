@@ -3,31 +3,57 @@ export default {
   name: 'Projects',
   props: {
 
-    thumb: String,
-    title: String,
-    type: Object,
-    description: String,
-    projectlink: String,
-    githublink: String,
-    technologies: Array,
-    authors: String,
-  }
+    project: Object,
+
+    // thumb: String,
+    // title: String,
+    // type: Object,
+    // description: String,
+    // projectlink: String,
+    // githublink: String,
+    // technologies: Array,
+    // authors: String,
+  },
+
 }
 </script>
 
 <template>
-  <div class="my-3 h-100">
+  <div class="py-3 h-100">
 
-    <div class="card">
-      <img :src="'http://localhost:8000' + '/storage/' + thumb" class="card-img-top" alt="...">
-      <h2>{{ title }}</h2>
-      <p>{{ description }}</p>
-      <small>{{ authors }}</small>
-      <a class=" text-decoration-none text-black" :href="projectlink">Link al progetto</a>
-      <a class=" text-decoration-none text-black" :href="githublink">Link github</a>
+    <div class="card h-100 text-center">
+      <div class="img_container">
+        <img :src="'http://localhost:8000' + '/storage/' + project.thumb" alt="...">
+      </div>
+      <h2>{{ project.title }}</h2>
+      <p>{{ project.description }}</p>
+      <small>{{ project.authors }}</small>
+      <a class=" text-decoration-none text-black" :href="project.projectlink">Link al progetto</a>
+      <a class=" text-decoration-none text-black" :href="project.githublink">Link github</a>
 
 
-      <div v-if="technologies" v-for="technology in technologies">{{ technology.name_tech }}</div>
+      <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
     </div>
   </div>
 </template>
+
+
+<style>
+
+.img_container {
+  
+  width: 100%;
+  height: 300px;
+
+
+}
+
+.img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+</style>

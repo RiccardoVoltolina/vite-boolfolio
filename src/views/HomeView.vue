@@ -8,58 +8,64 @@ import Projects from '../components/Projects.vue';
 
 export default {
 
-  
-  name: 'HomeView',
-  data() {
-    return {
 
-      base_url: 'http://localhost:8000',
+    name: 'HomeView',
+    data() {
+        return {
 
-      projects_url: '/api/projects',
+            base_url: 'http://localhost:8000',
 
-      projects: [],
+            projects_url: '/api/projects',
+
+            projects: [],
+        }
+    },
+
+    components: {
+
+        Projects,
+
+    },
+    mounted() {
+        axios
+
+            .get(this.base_url + this.projects_url)
+
+            .then(response => {
+
+                console.log(response);
+
+                this.projects = response.data.result
+            })
+
+            .catch(err => {
+                console.error(err);
+            })
     }
-  },
-
-  components: {
-
-    Projects,
-
-  },
-  mounted() {
-    axios
-
-      .get(this.base_url + this.projects_url)
-
-      .then(response => {
-
-        console.log(response);
-
-        this.projects = response.data.result
-      })
-
-      .catch(err => {
-        console.error(err);
-      })
-  }
 }
 </script>
 
 <template>
-  <div id="app">
+    <div id="app">
 
 
-    
-    <div class="container">
-      <h1>Progetti:</h1>
-      <div class="row row-cols-lg-3">
-        <div class="col" v-for="project in projects.data">
-          <Projects :thumb="project.thumb" :projectlink="project.projectlink" :githublink="project.githublink" :title="project.title" :type="project.type"
-                    :description="project.description" 
-                    :technologies="project.technologies"/>
+
+        <div class="container">
+            <h1>Progetti:</h1>
+            <div class="row row-cols-lg-3">
+                <div class="col" v-for="project in projects.data">
+                    <router-link class="text-decoration-none" :to="{ name: 'project', params: { id: project.id } }">
+                        <!-- <Projects :thumb="project.thumb" :projectlink="project.projectlink" :githublink="project.githublink"
+                            :title="project.title" :type="project.type" :description="project.description"
+                            :technologies="project.technologies" /> -->
+
+                        <Projects :project="project"/>
+
+                    </router-link>
 
 
-          <!-- <div class="my-3 h-100">
+
+                    <!-- <div class="my-3 h-100">
 
             <div class="card">
               <img :src="base_url + '/storage/' + project.thumb" class="card-img-top" alt="...">
@@ -70,17 +76,21 @@ export default {
               <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
             </div>
           </div> -->
+                </div>
+
+
+            </div>
         </div>
 
 
-      </div>
     </div>
-
-
-  </div>
 </template>
 
-<style lang=scss scoped></style>
+<style>
+
+
+
+</style>
 
 
 
