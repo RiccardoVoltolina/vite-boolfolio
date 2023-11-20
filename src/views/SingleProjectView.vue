@@ -27,16 +27,23 @@ import axios from 'axios';
 
 export default {
   name: 'SingleProjectView',
+
   data() {
+
     return {
+
       project: {}
     }
   },
+  
   mounted() {
+
+    // creo una variabile che mi porta al percorso del singolo progetto
 
     const url = `http://localhost:8000/api/projects/${this.$route.params.id}`;
 
     axios.get(url)
+
       .then(resp => {
         console.log(resp.data.result);
 
@@ -45,7 +52,9 @@ export default {
         this.project = resp.data.result
       })
       .catch(err => {
+
         console.log(err.message);
+
       })
 
   }
