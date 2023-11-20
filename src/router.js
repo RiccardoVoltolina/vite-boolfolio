@@ -4,13 +4,17 @@
 
 import { createWebHashHistory, createRouter } from 'vue-router';
 
-const Home = '';
+
+import HomeView from "./views/HomeView.vue";
+
 
 // creiamo la rotta per la pagina home
 
 const routes = [
 
-    { path: '/', component: Home },
+    // ricordarsi di far iniziare il path con /
+
+    { path: '/', component: HomeView },
 ]
 
 

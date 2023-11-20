@@ -1,0 +1,86 @@
+<script>
+
+import axios from 'axios';
+
+import Projects from '../components/Projects.vue';
+
+
+
+export default {
+
+  
+  name: 'HomeView',
+  data() {
+    return {
+
+      base_url: 'http://localhost:8000',
+
+      projects_url: '/api/projects',
+
+      projects: [],
+    }
+  },
+
+  components: {
+
+    Projects,
+
+  },
+  mounted() {
+    axios
+
+      .get(this.base_url + this.projects_url)
+
+      .then(response => {
+
+        console.log(response);
+
+        this.projects = response.data.result
+      })
+
+      .catch(err => {
+        console.error(err);
+      })
+  }
+}
+</script>
+
+<template>
+  <div id="app">
+
+
+    
+    <div class="container">
+      <h1>Progetti:</h1>
+      <div class="row row-cols-lg-3">
+        <div class="col" v-for="project in projects.data">
+          <Projects :thumb="project.thumb" :projectlink="project.projectlink" :githublink="project.githublink" :title="project.title" :type="project.type"
+                    :description="project.description" 
+                    :technologies="project.technologies"/>
+
+
+          <!-- <div class="my-3 h-100">
+
+            <div class="card">
+              <img :src="base_url + '/storage/' + project.thumb" class="card-img-top" alt="...">
+              <h2>{{ project.title }}</h2>
+              <p>{{ project.description }}</p>
+              <small>{{ project.authors }}</small>
+              
+              <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
+            </div>
+          </div> -->
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+</template>
+
+<style lang=scss scoped></style>
+
+
+
