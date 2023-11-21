@@ -1,15 +1,15 @@
 <template>
   <div>
 
-    <div class="my-3 h-100 d-flex justify-content-center">
+    <div class=" h-100 d-flex justify-content-center bg-body-secondary">
 
-      <div class="card text-center">
+      <div class="card text-center my-5">
         <img class="img_300px" :src="`http://localhost:8000/storage/${project.thumb}`" alt="">
         <h2>{{ project.title }}</h2>
         <p>{{ project.description }}</p>
         <small>{{ project.authors }}</small>
-        <a class=" text-decoration-none text-black" :href="projectlink">Link al progetto</a>
-        <a class=" text-decoration-none text-black" :href="githublink">Link github</a>
+        <a class=" text-decoration-none text-black" :href="project.projectlink">Link al progetto</a>
+        <a class=" text-decoration-none text-black" :href="project.githublink">Link github</a>
 
 
         <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
