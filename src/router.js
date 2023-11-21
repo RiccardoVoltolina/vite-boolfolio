@@ -9,6 +9,11 @@ import HomeView from "./views/HomeView.vue";
 
 import SingleProjectView from "./views/SingleProjectView.vue"
 
+import NotFound from "./views/NotFound.vue"
+
+
+
+
 
 // creiamo la rotta per la pagina home
 
@@ -24,6 +29,14 @@ const routes = [
         name: 'project',
 
         component: SingleProjectView,
+    },
+
+    {
+        path: '/:pathMatch(.*)*',
+
+        name: 'NotFound',
+
+        component: NotFound,
     }
 ]
 
@@ -32,6 +45,7 @@ const routes = [
 const router = createRouter({
 
     history: createWebHashHistory(),
+
     routes
 });
 

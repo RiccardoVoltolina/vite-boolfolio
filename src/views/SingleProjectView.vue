@@ -35,7 +35,7 @@ export default {
       project: {}
     }
   },
-  
+
   mounted() {
 
     // creo una variabile che mi porta al percorso del singolo progetto
@@ -47,9 +47,18 @@ export default {
       .then(resp => {
         console.log(resp.data.result);
 
+        if (resp.data.success) {
+
+          this.project = resp.data.result
+
+        } else {
+
+          this.$router.push({name: 'NotFound'});
+          
+        }
+
         // assegno i dati della chiamata,creata via backend al project di riga 32
 
-        this.project = resp.data.result
       })
       .catch(err => {
 
@@ -65,10 +74,8 @@ export default {
 </script>
 
 <style>
-
 .img_300px {
   width: 500px;
   aspect-ratio: 1;
 }
-
 </style>

@@ -9,8 +9,11 @@ export default {
   name: 'App',
 
   components: {
+
     AppHeader,
+
     AppFooter,
+    
   },
 }
 
@@ -29,6 +32,7 @@ export default {
   </main>
 
   <AppFooter></AppFooter>
+
 </template>
 
 <style></style>
