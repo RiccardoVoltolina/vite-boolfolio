@@ -34,34 +34,41 @@ export default {
         // richiamo la funzione per la mia chiamata
 
         this.axiosCall()
-      
+
     },
 
     methods: {
 
         // al richiamo della funzione, incremento currentPage e rieseguo la chiamata axios
 
-        nextPage: function() {
+        nextPage: function () {
 
             this.currentPage++
 
             this.axiosCall()
         },
 
+        prevPage: function () {
+
+            this.currentPage--
+
+            this.axiosCall()
+        },
+
         // eseguo la chiamata axios
 
-        axiosCall: function() {
+        axiosCall: function () {
             axios.get(this.base_url + this.projects_url + this.currentPage)
-            .then(response => {
+                .then(response => {
 
-                
 
-                this.projects = response.data.result
 
-            })
-            .catch(err => {
-                console.error(err);
-            })
+                    this.projects = response.data.result
+
+                })
+                .catch(err => {
+                    console.error(err);
+                })
         }
 
     },
@@ -79,16 +86,19 @@ export default {
             <div aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
+                        <a v-if="projects.current_page !== 1" class="page-link" @click="prevPage" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-
-                    <li class="page-item"><a class="page-link" href="#"></a></li>
-                    <li class="page-item"><a class="page-link" href="#">{{ projects.current_page }}</a></li>
-                    <li class="page-item"><a class="page-link" @click="nextPage" href="#">2</a></li>
+                    
+                    <li v-if=" projects.current_page !== 1" class="page-item"><a @click="prevPage" class="page-link" href="#">{{ projects.current_page -1 }}</a></li>
+                    <li class="page-item"><a class="page-link bg-secondary" href="#">{{ projects.current_page }}</a></li>
+                    <li v-if="projects.current_page < projects.last_page" class="page-item"><a @click="nextPage" class="page-link" href="#">{{ projects.current_page +1 }}</a></li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+
+                        <!-- se projects.current_page è maggiore o uguale alle pagine totali non lo faccio vedere -->
+
+                        <a v-if="projects.current_page < projects.last_page" class="page-link" @click="nextPage" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
