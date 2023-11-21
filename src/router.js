@@ -32,6 +32,8 @@ const routes = [
     },
 
     {
+        // creo il percorso web per la pagina di errore
+        
         path: '/:pathMatch(.*)*',
 
         name: 'NotFound',
