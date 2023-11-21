@@ -55,6 +55,20 @@ export default {
             this.axiosCall()
         },
 
+        goFirstPage: function () {
+
+            this.currentPage = 1,
+
+                this.axiosCall()
+        },
+
+        goLastPage: function () {
+
+            this.currentPage = this.projects.last_page,
+
+            this.axiosCall()
+        },
+
         // eseguo la chiamata axios
 
         axiosCall: function () {
@@ -86,19 +100,23 @@ export default {
             <div aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a v-if="projects.current_page !== 1" class="page-link" @click="prevPage" href="#" aria-label="Previous">
+                        <a v-if="projects.current_page !== 1" class="page-link" @click="goFirstPage" href="#"
+                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    
-                    <li v-if=" projects.current_page !== 1" class="page-item"><a @click="prevPage" class="page-link" href="#">{{ projects.current_page -1 }}</a></li>
+
+                    <li v-if="projects.current_page !== 1" class="page-item"><a @click="prevPage" class="page-link"
+                            href="#">{{ projects.current_page - 1 }}</a></li>
                     <li class="page-item"><a class="page-link bg-secondary" href="#">{{ projects.current_page }}</a></li>
-                    <li v-if="projects.current_page < projects.last_page" class="page-item"><a @click="nextPage" class="page-link" href="#">{{ projects.current_page +1 }}</a></li>
+                    <li v-if="projects.current_page < projects.last_page" class="page-item"><a @click="nextPage"
+                            class="page-link" href="#">{{ projects.current_page + 1 }}</a></li>
                     <li class="page-item">
 
-                        <!-- se projects.current_page è maggiore o uguale alle pagine totali non lo faccio vedere -->
+                        <!-- se projects.current_page è minore alle pagine totali non lo faccio vedere  (il dato di last_page lo vedo nella consolle vue) -->
 
-                        <a v-if="projects.current_page < projects.last_page" class="page-link" @click="nextPage" href="#" aria-label="Next">
+                        <a v-if="projects.current_page < projects.last_page" class="page-link" @click="goLastPage" href="#"
+                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
