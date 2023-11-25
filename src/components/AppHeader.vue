@@ -27,10 +27,7 @@ export default {
                             <li class="nav-item">
                                 <router-link class="nav-link" to="/about">About</router-link>
                             </li>
-
-                            <li class="nav-item">
-                                <router-link class="nav-link" to="/blog">Blog</router-link>
-                            </li>
+                            
                             <li class="nav-item">
                                 <router-link class="nav-link" to="/contacts">Contacts</router-link>
                             </li>

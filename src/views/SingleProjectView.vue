@@ -1,11 +1,10 @@
 <template>
   <div class="p-5 mb-4 bg-dark text-light">
     <div class="container py-5">
-      <h1 class="display-5 fw-bold">Ecco maggiori informazioni per il progetto che hai selezionato</h1>
+      <h1 class="display-5 fw-bold">Ecco maggiori informazioni sul progetto</h1>
 
       <p class="col-md-8 fs-4">scopri di più su di me!</p>
-      <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">Find out
-          more</button>
+      <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">About</button>
       </router-link>
     </div>
   </div>

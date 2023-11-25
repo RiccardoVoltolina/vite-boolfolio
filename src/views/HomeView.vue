@@ -124,11 +124,10 @@ export default {
 
         <div class="p-5 mb-4 bg-dark text-light">
             <div class="container py-5">
-                <h1 class="display-5 fw-bold">Tantissimi progetti ti aspettano</h1>
+                <h1 class="display-5 fw-bold">Sei curioso di sapere chi sono?</h1>
 
-                <p class="col-md-8 fs-4">scopri di più su di me!</p>
-                <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">Find out
-                        more</button>
+                <p class="col-md-8 fs-4">Scopri di più su di me!</p>
+                <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">About</button>
                 </router-link>
             </div>
         </div>
@@ -171,7 +170,7 @@ export default {
                 }" :navigation="true" :modules="modules" class="mySwiper">
 
 
-                    <swiper-slide v-for="(project, index) in projects.data" :key="index" :virtualIndex="index">
+                    <swiper-slide class="bg-transparent" v-for="(project, index) in projects.data" :key="index" :virtualIndex="index">
 
 
                         <!-- al click dell'immagine vado sul progetto singolo -->
@@ -181,7 +180,7 @@ export default {
                             <!-- <Projects :project="project" /> -->
 
                             <div>
-                                <h2 class="text-black">{{ project.title }}</h2>
+                                <h2 class="text-black py-2">{{ project.title }}</h2>
                             </div>
                             <div class="img_container">
                                 <img :src="'http://localhost:8000' + '/storage/' + project.thumb" alt="...">
