@@ -6,6 +6,7 @@ import Projects from '../components/Projects.vue';
 
 
 
+
 export default {
 
 
@@ -125,10 +126,9 @@ export default {
 
             <div class="row row-cols-lg-3">
                 <div class="col" v-for="project in projects.data">
+
                     <router-link class="text-decoration-none" :to="{ name: 'project', params: { id: project.id } }">
-                        <!-- <Projects :thumb="project.thumb" :projectlink="project.projectlink" :githublink="project.githublink"
-                            :title="project.title" :type="project.type" :description="project.description"
-                            :technologies="project.technologies" /> -->
+                        
 
                         <Projects :project="project" />
 
@@ -136,17 +136,6 @@ export default {
 
 
 
-                    <!-- <div class="my-3 h-100">
-
-            <div class="card">
-              <img :src="base_url + '/storage/' + project.thumb" class="card-img-top" alt="...">
-              <h2>{{ project.title }}</h2>
-              <p>{{ project.description }}</p>
-              <small>{{ project.authors }}</small>
-              
-              <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
-            </div>
-          </div> -->
                 </div>
 
 
