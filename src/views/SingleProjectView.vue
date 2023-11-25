@@ -1,22 +1,70 @@
 <template>
-  <div>
+  <div class="p-5 mb-4 bg-dark text-light">
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">Ecco maggiori informazioni per il progetto che hai selezionato</h1>
 
-    <div class=" h-100 d-flex justify-content-center bg-body-secondary">
+      <p class="col-md-8 fs-4">scopri di più su di me!</p>
+      <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">Find out
+          more</button>
+      </router-link>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-4">
 
-      <div class="card text-center my-5">
-        <img class="img_300px" :src="`http://localhost:8000/storage/${project.thumb}`" alt="">
-        <h2>{{ project.title }}</h2>
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img :src="`http://localhost:8000/storage/${project.thumb}`" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <div class="mb-2">
+                  <div class="card-text">Tipo di progetto:</div>
+                  <div class="card-text" v-if="valoreType">{{ valoreType.type }}</div>
+                  <div class="card-text" v-else>Nessuna tipologia selezionata</div>
+
+                </div>
+                <div class="mb-3">
+                  <div class="card-text">Tecnologie utilizzate:</div>
+                  <span class="badge bg-secondary card-text me-2" v-if="project.technologies"
+                    v-for="technology in project.technologies">{{ technology.name_tech }}</span>
+                </div>
+                <div class="mb-2">
+                  <div class="card-text">Autore/i</div>
+                  <p class="card-text">
+                  <h5 class="text-body-secondary">{{ project.authors }}</h5>
+                  </p>
+                </div>
+                <div class="mb-2">
+                  <div class="card-text">Link del progetto:</div>
+
+                  <a class=" text-decoration-none text-black" :href="project.projectlink"><i
+                      class="fa-solid fa-code-branch"></i></a>
+                  <a class=" text-decoration-none text-black ms-2" :href="project.githublink"><i
+                      class="fa-brands fa-github"></i></a>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+
+        <h5>Descrizione del progetto:</h5>
+
         <p>{{ project.description }}</p>
-        <small>{{ project.authors }}</small>
-        <a class=" text-decoration-none text-black" :href="project.projectlink">Link al progetto</a>
-        <a class=" text-decoration-none text-black" :href="project.githublink">Link github</a>
-
-
-        <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
-        <div v-if="valoreType.type">{{ valoreType.type }} </div>
-
       </div>
     </div>
+
+  </div>
+  <div>
+
+
 
 
 
@@ -85,9 +133,4 @@ export default {
 }
 </script>
 
-<style>
-.img_300px {
-  width: 500px;
-  aspect-ratio: 1;
-}
-</style>
+<style></style>

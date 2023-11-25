@@ -122,14 +122,20 @@ export default {
 
 
 
+        <div class="p-5 mb-4 bg-dark text-light">
+            <div class="container py-5">
+                <h1 class="display-5 fw-bold">Tantissimi progetti ti aspettano</h1>
+
+                <p class="col-md-8 fs-4">scopri di più su di me!</p>
+                <router-link class="nav-link" to="/about"> <button class="btn btn-primary btn-lg" type="button">Find out
+                        more</button>
+                </router-link>
+            </div>
+        </div>
         <div class="container">
-            <h1>Progetti:</h1>
-
-
-
-
 
             <div aria-label="Page navigation example">
+                <div>Scorri tra le pagine dei progetti:</div>
                 <ul class="pagination">
                     <li class="page-item">
                         <a v-if="projects.current_page !== 1" class="page-link" @click="goFirstPage" href="#"
@@ -155,7 +161,11 @@ export default {
                 </ul>
             </div>
 
-            <div class="row row-cols-lg-3">
+
+
+            <h2 class="text-center my-5">Clicca su un progetto per visualizzarne i dettagli!</h2>
+            <div class="row row-cols-lg-3 mb-5">
+
                 <swiper :slidesPerView="1" :spaceBetween="30" :loop="true" :pagination="{
                     clickable: true,
                 }" :navigation="true" :modules="modules" class="mySwiper">
@@ -163,13 +173,15 @@ export default {
 
                     <swiper-slide v-for="(project, index) in projects.data" :key="index" :virtualIndex="index">
 
+
                         <!-- al click dell'immagine vado sul progetto singolo -->
-                        <router-link class="text-decoration-none pb-5" :to="{ name: 'project', params: { id: project.id } }">
+                        <router-link class="text-decoration-none pb-5"
+                            :to="{ name: 'project', params: { id: project.id } }">
 
                             <!-- <Projects :project="project" /> -->
 
                             <div>
-                                <h2>{{ project.title }}</h2>
+                                <h2 class="text-black">{{ project.title }}</h2>
                             </div>
                             <div class="img_container">
                                 <img :src="'http://localhost:8000' + '/storage/' + project.thumb" alt="...">
@@ -180,7 +192,7 @@ export default {
 
 
                 </swiper>
-                
+
 
 
 

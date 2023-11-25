@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <footer class="py-5 bg-black text-light">
+  <footer class="py-5 bg-dark text-light">
     <div class="container d-flex justify-content-center">
       <div class="row gap-5">
         <div class="col">
