@@ -158,29 +158,29 @@ export default {
             <div class="row row-cols-lg-3">
                 <swiper :slidesPerView="1" :spaceBetween="30" :loop="true" :pagination="{
                     clickable: true,
-                }" :navigation="true" :modules="modules"  class="mySwiper">
+                }" :navigation="true" :modules="modules" class="mySwiper">
 
 
                     <swiper-slide v-for="(project, index) in projects.data" :key="index" :virtualIndex="index">
-                        <div class="rettangolo">{{ project.title }}</div>
+
+                        <!-- al click dell'immagine vado sul progetto singolo -->
+                        <router-link class="text-decoration-none pb-5" :to="{ name: 'project', params: { id: project.id } }">
+
+                            <!-- <Projects :project="project" /> -->
+
+                            <div>
+                                <h2>{{ project.title }}</h2>
+                            </div>
+                            <div class="img_container">
+                                <img :src="'http://localhost:8000' + '/storage/' + project.thumb" alt="...">
+                            </div>
+
+                        </router-link>
                     </swiper-slide>
 
 
                 </swiper>
-                <div class="col" v-for="project in projects.data">
-
-                    <router-link class="text-decoration-none" :to="{ name: 'project', params: { id: project.id } }">
-
-
-
-
-                        <!-- <Projects :project="project" /> -->
-
-                    </router-link>
-
-
-
-                </div>
+                
 
 
 
@@ -212,12 +212,6 @@ body {
     padding: 0;
 }
 
-.rettangolo {
-    height: 300px;
-    width: 300px;
-    background-color: red;
-
-}
 
 .swiper {
     width: 100%;

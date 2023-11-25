@@ -13,6 +13,8 @@
 
 
         <div v-if="project.technologies" v-for="technology in project.technologies">{{ technology.name_tech }}</div>
+        <div v-if="valoreType.type">{{ valoreType.type }} </div>
+
       </div>
     </div>
 
@@ -32,7 +34,10 @@ export default {
 
     return {
 
-      project: {}
+      project: {},
+
+      // gli assegno il valore di type
+      valoreType: '',
     }
   },
 
@@ -51,10 +56,17 @@ export default {
 
           this.project = resp.data.result
 
+          // gli assegno il valore di type prendendolo da project
+
+
+          this.valoreType = this.project.type
+
+          console.log(valoreType);
+
         } else {
 
-          this.$router.push({name: 'NotFound'});
-          
+          this.$router.push({ name: 'NotFound' });
+
         }
 
         // assegno i dati della chiamata,creata via backend al project di riga 32
