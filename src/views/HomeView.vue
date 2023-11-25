@@ -4,6 +4,21 @@ import axios from 'axios';
 
 import Projects from '../components/Projects.vue';
 
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import '../style.scss';
+
+// import required modules
+import { Pagination, Navigation } from 'swiper/modules';
+
+
 
 
 
@@ -29,7 +44,19 @@ export default {
 
         Projects,
 
+        Swiper,
+
+        SwiperSlide,
+
+
     },
+
+    setup() {
+        return {
+            modules: [Pagination, Navigation],
+        };
+    },
+
     mounted() {
 
         // richiamo la funzione per la mia chiamata
@@ -67,7 +94,7 @@ export default {
 
             this.currentPage = this.projects.last_page,
 
-            this.axiosCall()
+                this.axiosCall()
         },
 
         // eseguo la chiamata axios
@@ -98,6 +125,10 @@ export default {
         <div class="container">
             <h1>Progetti:</h1>
 
+
+
+
+
             <div aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
@@ -125,18 +156,33 @@ export default {
             </div>
 
             <div class="row row-cols-lg-3">
+                <swiper :slidesPerView="1" :spaceBetween="30" :loop="true" :pagination="{
+                    clickable: true,
+                }" :navigation="true" :modules="modules"  class="mySwiper">
+
+
+                    <swiper-slide v-for="(project, index) in projects.data" :key="index" :virtualIndex="index">
+                        <div class="rettangolo">{{ project.title }}</div>
+                    </swiper-slide>
+
+
+                </swiper>
                 <div class="col" v-for="project in projects.data">
 
                     <router-link class="text-decoration-none" :to="{ name: 'project', params: { id: project.id } }">
-                        
 
-                        <Projects :project="project" />
+
+
+
+                        <!-- <Projects :project="project" /> -->
 
                     </router-link>
 
 
 
                 </div>
+
+
 
 
             </div>
@@ -146,7 +192,61 @@ export default {
     </div>
 </template>
 
-<style></style>
+<style>
+#app {
+    height: 100%;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.rettangolo {
+    height: 300px;
+    width: 300px;
+    background-color: red;
+
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
 
 
 
