@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import Projects from '../components/Projects.vue';
 
+
+
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
