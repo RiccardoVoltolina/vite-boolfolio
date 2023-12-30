@@ -51,7 +51,7 @@
                         <small id="emailHelper" class="text-muted">Type your email</small>
 
                         <div class="alert alert-danger" role="alert" v-if="errors.email">
-                            <strong>Erorrs!</strong>
+                            <strong>Errors!</strong>
 
                             <ul>
                                 <li v-for="message in errors.email">{{ message }}</li>
@@ -137,6 +137,7 @@ export default {
     methods: {
         sendForm() {
 
+
             this.loading = true;
             this.errors = [];
             this.success = null
@@ -152,24 +153,21 @@ export default {
 
             axios.post(this.state.base_url + '/api/contacts', payload)
                 .then(response => {
+                    console.log(response);
 
                     const success = response.data.success
                     if (!success) {
-                        // there are errors
                         console.log(response);
                         console.log(response.data.errors);
                         this.errors = response.data.errors
                     } else {
-                        // All good
                         console.log(response);
                         console.log(response.data.message);
-                        // empty the form
                         this.name = ''
                         this.email = ''
                         this.message = ''
                         this.phone = ''
 
-                        // print a success message
                         this.success = response.data.message
                     }
                     this.loading = false
